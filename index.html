@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-section">
+            <div class="header">
+                <div class="title">
+                    <span class="icon">📊</span>
+                    <h1>Semester GPA Calculator</h1>
+                </div>
+            </div>
+
+            <div class="semester-selector">
+                <select class="input-field semester-select" id="semester-select">
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                </select>
+            </div>
+            
+            <div class="semester-container">
+                <div class="inputs-container" id="subjects-container">
+                    <div class="input-row">
+                        <select class="input-field subject-select" name="subject">
+                            <option value="" disabled selected>Select Subject</option>
+                        </select>
+                        <select class="input-field" name="credits">
+                            <option value="" disabled selected>Select Credits</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <input type="number" class="input-field" placeholder="Grade Points" min="0" max="10" step="0.1">
+                        <button class="remove-btn">×</button>
+                    </div>
+                </div>
+                
+                <div class="semester-summary">
+                    <div class="summary-item">
+                        <span>Total Credits:</span>
+                        <span id="total-credits">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Semester GPA:</span>
+                        <span id="semester-gpa">0.00</span>
+                    </div>
+                    <div id="semester-gpa-container" class="download-container">
+                        <!-- Download button will be added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-section">
+            <div class="header">
+                <div class="title">
+                    <span class="icon">📈</span>
+                    <h1>Overall CGPA Calculator</h1>
+                </div>
+            </div>
+            
+            <div class="inputs-container" id="semesters-container">
+                <div class="input-row">
+                    <input type="text" class="input-field" placeholder="Semester Name">
+                    <input type="number" class="input-field" placeholder="GPA" min="0" max="10" step="0.01">
+                    <input type="number" class="input-field" placeholder="Total Credits" min="1" step="0.5">
+                    <button class="remove-btn">×</button>
+                </div>
+            </div>
+            
+            <div class="semester-summary">
+                <div class="summary-item">
+                    <span>Overall CGPA:</span>
+                    <span id="overall-cgpa">0.00</span>
+                </div>
+                <div id="cgpa-container" class="download-container">
+                    <!-- Download button will be added here by JavaScript -->
+                </div>
+            </div>
+
+            <button class="add-btn" id="add-semester">
+                <span class="plus-icon">+</span>
+                Add Semester
+            </button>
+        </div>
+    </div>
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+:root {
+    --primary-color: #4f46e5;
+    --primary-dark: #4338ca;
+    --secondary-color: #ec4899;
+    --background-color: #0f172a;
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --text-color: #e2e8f0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --gradient-1: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+    --gradient-2: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --placeholder-color: rgba(255, 255, 255, 0.5);
+    --accent-color: #8338ec;
+    --remove-btn-color: rgba(255, 59, 59, 0.2);
+    --remove-btn-text: rgb(255, 59, 59);
+    --animation-timing: 0.3s;
+    --input-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 4px 20px rgba(131, 56, 236, 0.15);
+    --bg-gradient-dark-1: #1a1c2e;
+    --bg-gradient-dark-2: #0f111d;
+    --bg-gradient-light-1: #f8f9fa;
+    --bg-gradient-light-2: #e9ecef;
+    --glass-bg-dark: rgba(255, 255, 255, 0.07);
+    --glass-bg-light: rgba(255, 255, 255, 0.95);
+    --text-color-dark: #ffffff;
+    --text-color-light: #000000;
+    --input-bg-dark: rgba(255, 255, 255, 0.1);
+    --input-bg-light: rgba(255, 255, 255, 0.95);
+}
+
+/* Dark Theme (default) */
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-gradient-dark-1), var(--bg-gradient-dark-2));
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
+    color: var(--text-color-dark);
+    padding: 2rem;
+}
+
+.particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.calculator-section {
+    background: var(--glass-bg-dark);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-out;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.calculator-section .inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.calculator-section .input-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.calculator-section .input-row:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: minmax(200px, 2fr) minmax(150px, 1fr) minmax(150px, 1fr);
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: var(--input-bg-dark);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    margin-bottom: 0.5rem;
+    animation: fadeIn var(--animation-timing) ease-out;
+    transition: all 0.3s ease;
+}
+
+.input-row:hover {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: var(--hover-shadow);
+}
+
+.calculator-section .input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-field {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    min-width: 0; /* Prevents input fields from overflowing */
+    box-sizing: border-box;
+}
+
+.calculator-section .input-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: var(--input-shadow);
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(131, 56, 236, 0.2);
+}
+
+.calculator-section .input-field[readonly] {
+    background: var(--glass-bg);
+    cursor: default;
+}
+
+/* Dropdown specific styles */
+select.input-field {
+    cursor: pointer;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select.input-field option {
+    background-color: #1a1b2e;
+    color: white;
+    padding: 12px;
+}
+
+select.input-field option:checked {
+    background-color: var(--accent-color);
+}
+
+/* Disabled option styling */
+select.input-field option[disabled] {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Placeholder styling */
+select.input-field option:first-child {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Make sure the text is white when an option is selected */
+select.input-field:not([value=""]) {
+    color: white;
+}
+
+.remove-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--remove-btn-color);
+    color: var(--remove-btn-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.calculator-section .remove-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: var(--remove-btn-color);
+    color: var(--remove-btn-text);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn:hover {
+    background: var(--remove-btn-text);
+    color: white;
+    transform: scale(1.1);
+}
+
+.add-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.add-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.add-btn:hover::before {
+    left: 100%;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(131, 56, 236, 0.3);
+}
+
+.plus-icon {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(79, 70, 229, 0.5);
+    }
+}
+
+/* Background animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Light theme variables */
+.light-theme {
+    --bg-gradient-1: #f8f9fa;
+    --bg-gradient-2: #e9ecef;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #212529;
+    --placeholder-color: rgba(33, 37, 41, 0.5);
+    --accent-color: #8338ec;
+    --remove-btn-color: rgba(255, 59, 59, 0.1);
+    --remove-btn-text: rgb(255, 59, 59);
+    --input-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Enhance glass effect for light theme */
+.light-theme .calculator-section {
+    background: var(--glass-bg);
+    box-shadow: 
+        0 4px 15px 0 rgba(0, 0, 0, 0.05),
+        0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .input-field {
+    background: var(--input-bg);
+}
+
+.light-theme .input-row {
+    background: var(--glass-bg);
+    box-shadow: var(--input-shadow);
+}
+
+/* Input field focus states for light theme */
+.light-theme .input-field:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(131, 56, 236, 0.15);
+}
+
+/* Scrollbar for light theme */
+.light-theme ::-webkit-scrollbar-track {
+    background: var(--bg-gradient-2);
+}
+
+.light-theme ::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    opacity: 0.8;
+}
+
+/* Common styles for both themes */
+.input-field:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(131, 56, 236, 0.2);
+}
+
+h1, h2 {
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme h1,
+.light-theme h2 {
+    color: var(--text-color-light);
+}
+
+/* Enhanced visibility for buttons */
+.add-btn {
+    background: var(--accent-color);
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 12px 24px;
+}
+
+.remove-btn {
+    background: var(--remove-btn-color);
+    color: var(--remove-btn-text);
+    font-weight: bold;
+    text-shadow: none;
+}
+
+.semester-selector {
+    margin-bottom: 2rem;
+}
+
+.semester-select {
+    width: 200px;
+    margin-bottom: 1rem;
+}
+
+.semester-container {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.semester-summary {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--glass-bg-dark);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.summary-item:not(:last-child) {
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.summary-item span:last-child {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* Subject dropdown styles */
+.subject-select {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subject-select option {
+    padding: 8px;
+    white-space: normal;
+}
+
+.subject-name {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Download button styles */
+.download-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.download-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0 10px;
+}
+
+.download-btn:first-child {
+    background: var(--gradient-1);
+}
+
+.download-btn:last-child {
+    background: var(--gradient-2);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    body {
+        padding: 1rem;
+    }
+    
+    .calculator-section {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+}
